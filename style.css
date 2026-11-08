@@ -1,0 +1,1141 @@
+
+/* =====================================
+   GLOBAL STYLES
+===================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    color: #fff3dc;
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(ellipse at 50% 15%,
+            rgba(174, 48, 34, 0.4),
+            transparent 55%),
+        radial-gradient(ellipse at 0% 70%,
+            rgba(112, 12, 24, 0.5),
+            transparent 45%),
+        linear-gradient(
+            180deg,
+            #30060b,
+            #560b13 40%,
+            #29040b 100%
+        );
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+#fireworks {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+section,
+.navbar {
+    position: relative;
+    z-index: 2;
+}
+
+.light-string,
+.petal,
+.gold-particles {
+    pointer-events: none;
+}
+
+
+/* =====================================
+   OPENING VELVET CURTAINS
+===================================== */
+
+.curtain-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    pointer-events: auto;
+}
+
+.curtain {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 51%;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.16) 0px,
+            transparent 18px,
+            rgba(255, 190, 150, 0.09) 38px,
+            transparent 60px
+        ),
+        linear-gradient(
+            90deg,
+            #390008,
+            #850e1b 25%,
+            #620710 65%,
+            #330007
+        );
+
+    box-shadow:
+        inset -15px 0 30px rgba(0,0,0,0.3),
+        inset 10px 0 25px rgba(255,180,120,0.1),
+        0 0 35px rgba(0,0,0,0.6);
+}
+
+.curtain-left {
+    left: 0;
+    border-right: 3px solid #d9a64e;
+}
+
+.curtain-right {
+    right: 0;
+    border-left: 3px solid #d9a64e;
+}
+
+.curtain::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent 80%,
+            rgba(255, 205, 120, 0.12)
+        );
+}
+
+.curtain-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 1002;
+    width: 90%;
+    text-align: center;
+
+    transition: opacity 0.5s ease;
+}
+
+.curtain-center.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.curtain-decor {
+    font-size: 35px;
+    margin-bottom: 25px;
+    animation: glow 2s infinite alternate;
+}
+
+.curtain-center p {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: #f6cb78;
+}
+
+.curtain-center h1 {
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(48px, 8vw, 85px);
+    color: #ffdf9b;
+    margin: 20px 0;
+    text-shadow: 0 0 25px rgba(255,180,60,0.4);
+}
+
+.curtain-center > span {
+    font-size: 13px;
+    color: #f4d7c4;
+}
+
+.curtain-button {
+    display: block;
+    margin: 35px auto 0;
+
+    padding: 15px 30px;
+    border: 1px solid #f8d18a;
+    border-radius: 50px;
+
+    color: #420a10;
+    font-weight: 600;
+
+    background: linear-gradient(
+        135deg,
+        #ffe4a2,
+        #d99a39
+    );
+
+    box-shadow: 0 0 30px rgba(255,190,70,0.25);
+    transition: 0.3s;
+}
+
+.curtain-button:hover {
+    transform: scale(1.07);
+    box-shadow: 0 0 35px rgba(255,190,70,0.6);
+}
+
+/* Curtains open from center */
+
+.curtain-screen.open .curtain-left {
+    animation: openLeft 2s cubic-bezier(.7,0,.2,1) forwards;
+}
+
+.curtain-screen.open .curtain-right {
+    animation: openRight 2s cubic-bezier(.7,0,.2,1) forwards;
+}
+
+.curtain-screen.open {
+    pointer-events: none;
+    transition: visibility 0s linear 2.1s;
+    visibility: hidden;
+}
+
+@keyframes openLeft {
+    to {
+        transform: translateX(-105%);
+    }
+}
+
+@keyframes openRight {
+    to {
+        transform: translateX(105%);
+    }
+}
+
+
+/* =====================================
+   BACKGROUND LIGHTS
+===================================== */
+
+.light-string {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-around;
+
+    z-index: 5;
+}
+
+.light {
+    width: 9px;
+    height: 15px;
+
+    border-radius: 50%;
+    background: #ffd166;
+
+    box-shadow:
+        0 0 12px #ffb703,
+        0 0 25px #ff8800;
+
+    animation: blink 1.4s infinite alternate;
+}
+
+.light:nth-child(2n) {
+    background: #ff7892;
+    box-shadow: 0 0 15px #ff7892;
+}
+
+.light:nth-child(3n) {
+    background: #fff;
+    box-shadow: 0 0 15px #fff;
+}
+
+@keyframes blink {
+    from {
+        opacity: 0.4;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+
+/* =====================================
+   FLOATING PETALS
+===================================== */
+
+.petal {
+    position: fixed;
+    top: -40px;
+    z-index: 3;
+
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+
+/* =====================================
+   GOLD PARTICLES
+===================================== */
+
+.gold-particles {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.gold-dot {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+
+    background: #ffdf80;
+    box-shadow: 0 0 12px #ffb52e;
+
+    animation: particleFloat linear infinite;
+}
+
+@keyframes particleFloat {
+    0% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+
+    20%, 80% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+}
+
+
+/* =====================================
+   BACKGROUND DIYAS
+===================================== */
+
+.background-diya {
+    position: fixed;
+    bottom: 35px;
+    z-index: 2;
+
+    width: 100px;
+    height: 100px;
+
+    pointer-events: none;
+}
+
+.diya-left {
+    left: 35px;
+}
+
+.diya-right {
+    right: 35px;
+}
+
+.bg-diya-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100px;
+    height: 43px;
+
+    border-radius: 10% 10% 50% 50%;
+
+    background: linear-gradient(
+        180deg,
+        #ffc76d,
+        #d46b21 55%,
+        #7e260d
+    );
+
+    border: 2px solid #eeb65a;
+
+    box-shadow:
+        0 5px 20px rgba(255,110,0,0.4),
+        inset 0 5px 10px rgba(255,255,255,0.3);
+}
+
+.bg-flame {
+    position: absolute;
+    bottom: 43px;
+    left: 41px;
+
+    width: 20px;
+    height: 38px;
+
+    border-radius: 50% 50% 50% 0;
+
+    transform: rotate(-45deg);
+    transform-origin: bottom center;
+
+    background: linear-gradient(
+        45deg,
+        #ff5a00,
+        #ffb52e,
+        #fff4ad
+    );
+
+    box-shadow:
+        0 0 20px #ff8c00,
+        0 0 45px #ffad32;
+
+    animation: flame 0.45s infinite alternate;
+}
+
+.diya-glow {
+    position: absolute;
+    bottom: 5px;
+    left: -20px;
+
+    width: 140px;
+    height: 100px;
+
+    background: radial-gradient(
+        ellipse,
+        rgba(255,160,35,0.2),
+        transparent 70%
+    );
+}
+
+@keyframes flame {
+    from {
+        transform: rotate(-48deg) scale(0.9);
+    }
+
+    to {
+        transform: rotate(-40deg) scale(1.1);
+    }
+}
+
+
+/* =====================================
+   NAVBAR
+===================================== */
+
+.navbar {
+    position: absolute;
+    top: 35px;
+    left: 0;
+
+    width: 100%;
+    padding: 0 8%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffda91;
+}
+
+.nav-tag {
+    font-size: 12px;
+    color: #e8c5a9;
+}
+
+
+/* =====================================
+   HERO SECTION
+===================================== */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 120px 20px 50px;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 850px;
+    animation: rise 1.5s ease forwards;
+}
+
+.hero-decor {
+    font-size: 38px;
+    margin-bottom: 30px;
+
+    animation: glow 2s infinite alternate;
+}
+
+.eyebrow {
+    color: #ffce76;
+    letter-spacing: 4px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.hero-title {
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(65px, 10vw, 125px);
+    line-height: 1.2;
+    margin-top: 20px;
+
+    background: linear-gradient(
+        90deg,
+        #fff0bd,
+        #ffcc68,
+        #fff7dc,
+        #e9a23b
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    filter: drop-shadow(0 0 25px rgba(255, 183, 3, 0.25));
+}
+
+.hero-title span {
+    display: block;
+}
+
+.hero-subtitle {
+    font-size: clamp(20px, 4vw, 34px);
+    font-weight: 300;
+    color: #ffe3d3;
+    margin-top: 15px;
+}
+
+.hero-description {
+    max-width: 650px;
+    margin: 25px auto 0;
+
+    color: #e8cfc5;
+    font-size: 14px;
+    line-height: 2;
+}
+
+
+/* =====================================
+   BUTTONS
+===================================== */
+
+.primary-button {
+    border: 1px solid rgba(255, 225, 160, 0.6);
+
+    padding: 16px 30px;
+    border-radius: 50px;
+
+    color: #4b1609;
+    font-weight: 600;
+    font-size: 14px;
+
+    background: linear-gradient(
+        135deg,
+        #ffe1a0,
+        #e9a23b
+    );
+
+    box-shadow: 0 0 25px rgba(255, 183, 3, 0.25);
+
+    transition: 0.3s ease;
+}
+
+.hero .primary-button {
+    margin-top: 35px;
+}
+
+.primary-button span {
+    margin-left: 8px;
+}
+
+.primary-button:hover {
+    transform: translateY(-4px) scale(1.03);
+
+    box-shadow: 0 0 35px rgba(255, 183, 3, 0.55);
+}
+
+.scroll-indicator {
+    color: #e5bca9;
+    font-size: 12px;
+    margin-top: 35px;
+
+    animation: bounce 1.5s infinite;
+}
+
+
+/* =====================================
+   HERO DIYAS
+===================================== */
+
+.diyas {
+    display: flex;
+    justify-content: center;
+    gap: 55px;
+    margin-top: 75px;
+}
+
+.diya {
+    position: relative;
+    width: 75px;
+    height: 65px;
+}
+
+.diya-body {
+    position: absolute;
+    bottom: 0;
+
+    width: 75px;
+    height: 35px;
+
+    background: linear-gradient(
+        180deg,
+        #ffcb69,
+        #b94e18
+    );
+
+    border-radius: 0 0 50% 50%;
+
+    box-shadow: 0 0 20px rgba(255, 140, 0, 0.6);
+}
+
+.flame {
+    position: absolute;
+    top: 0;
+    left: 50%;
+
+    width: 18px;
+    height: 30px;
+
+    transform: translateX(-50%);
+    transform-origin: bottom center;
+
+    background: radial-gradient(
+        circle at 50% 70%,
+        #fff7ae,
+        #ff9d00 60%,
+        #ff4500
+    );
+
+    border-radius: 50% 50% 50% 0;
+
+    box-shadow: 0 0 20px #ffae00;
+
+    animation: heroFlame 0.4s infinite alternate;
+}
+
+@keyframes heroFlame {
+    from {
+        transform: translateX(-50%) rotate(-5deg) scale(0.9);
+    }
+
+    to {
+        transform: translateX(-50%) rotate(5deg) scale(1.1);
+    }
+}
+
+
+/* =====================================
+   SECTIONS
+===================================== */
+
+.section {
+    max-width: 1100px;
+    margin: auto;
+    padding: 100px 25px;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.script-title {
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(45px, 7vw, 75px);
+
+    margin: 15px 0;
+
+    background: linear-gradient(
+        90deg,
+        #fff0bd,
+        #ffcc68,
+        #fff7dc
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-description {
+    max-width: 600px;
+    margin: auto;
+
+    color: #e8cfc5;
+    font-size: 14px;
+    line-height: 2;
+}
+
+
+/* =====================================
+   GLASS CARDS
+===================================== */
+
+.wish-card,
+.photo-card,
+.final-card {
+    background: rgba(255, 225, 190, 0.055);
+
+    border: 1px solid rgba(255, 211, 126, 0.25);
+
+    backdrop-filter: blur(15px);
+
+    box-shadow: 0 0 40px rgba(255, 183, 3, 0.07);
+}
+
+.wish-card {
+    padding: 45px;
+    border-radius: 30px;
+    text-align: center;
+}
+
+.gift-icon {
+    font-size: 55px;
+    margin-bottom: 35px;
+
+    animation: giftFloat 2s infinite alternate;
+}
+
+
+/* =====================================
+   WISH BUTTONS
+===================================== */
+
+.wish-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.wish-button {
+    padding: 25px 15px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    border: 1px solid rgba(255, 215, 120, 0.35);
+    border-radius: 20px;
+
+    color: #fff;
+
+    transition: 0.3s ease;
+}
+
+.wish-button:hover {
+    transform: translateY(-5px);
+
+    background: rgba(255, 215, 120, 0.1);
+
+    box-shadow: 0 0 25px rgba(255, 183, 3, 0.15);
+}
+
+.wish-icon {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.wish-button-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffdf9b;
+}
+
+.wish-button-subtitle {
+    font-size: 11px;
+    color: #dfb8a9;
+    margin-top: 10px;
+}
+
+
+/* =====================================
+   WISH MESSAGE
+===================================== */
+
+.wish-message {
+    display: none;
+
+    padding: 30px 15px;
+    margin-top: 35px;
+
+    border-top: 1px solid rgba(255, 215, 120, 0.2);
+}
+
+.wish-message.show {
+    display: block;
+    animation: reveal 0.6s ease forwards;
+}
+
+.message-icon {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.wish-message h3 {
+    font-family: "Great Vibes", cursive;
+    font-size: 42px;
+    color: #ffdf9b;
+}
+
+.wish-message p {
+    max-width: 650px;
+    margin: 20px auto 0;
+
+    color: #f0dcd2;
+    font-size: 14px;
+    line-height: 2;
+}
+
+
+/* =====================================
+   PHOTO GALLERY
+===================================== */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.photo-card {
+    padding: 12px;
+    border-radius: 25px;
+
+    transition: 0.4s ease;
+}
+
+.photo-card:hover {
+    transform: translateY(-8px) rotate(1deg);
+
+    box-shadow: 0 0 30px rgba(255, 183, 3, 0.2);
+}
+
+.gallery-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    border-radius: 18px;
+}
+
+.photo-caption {
+    padding: 5px 50px 100px;
+
+    font-family: "Great Vibes", cursive;
+    font-size: 27px;
+
+    color: #ffdf9b;
+    text-align: center;
+}
+
+
+/* =====================================
+   FINAL SECTION
+===================================== */
+
+.final-section {
+    padding: 100px 25px 40px;
+    text-align: center;
+}
+
+.final-decor {
+    font-size: 40px;
+    margin-bottom: 30px;
+
+    animation: glow 2s infinite alternate;
+}
+
+.final-title {
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(60px, 10vw, 115px);
+
+    background: linear-gradient(
+        90deg,
+        #fff0bd,
+        #ffcc68,
+        #fff7dc
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.final-subtitle {
+    color: #ffe3d3;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.final-card {
+    max-width: 700px;
+    margin: 50px auto 0;
+
+    padding: 45px;
+    border-radius: 30px;
+}
+
+.final-card > p:first-child {
+    color: #f0dcd2;
+    font-size: 14px;
+    line-height: 2.2;
+}
+
+.final-card h3 {
+    font-family: "Great Vibes", cursive;
+    font-size: 40px;
+    color: #ffdf9b;
+
+    margin-top: 30px;
+}
+
+.sender {
+    color: #dfb8a9;
+    font-size: 12px;
+    margin-top: 20px;
+}
+
+.sender-name {
+    color: #fff;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.celebrate-button {
+    margin-top: 40px;
+}
+
+footer {
+    color: #d2a69b;
+    font-size: 11px;
+    margin-top: 90px;
+}
+
+
+/* =====================================
+   ANIMATIONS
+===================================== */
+
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px #ffc857;
+    }
+
+    to {
+        text-shadow:
+            0 0 30px #ff8c00,
+            0 0 50px #ffc857;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(8px);
+    }
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes giftFloat {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-10px);
+    }
+}
+
+
+/* =====================================
+   RESPONSIVE DESIGN
+===================================== */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        top: 25px;
+        padding: 0 5%;
+    }
+
+    .nav-logo {
+        font-size: 14px;
+    }
+
+    .nav-tag {
+        font-size: 10px;
+    }
+
+    .hero {
+        padding-top: 120px;
+    }
+
+    .hero-description {
+        font-size: 13px;
+    }
+
+    .diyas {
+        gap: 25px;
+    }
+
+    .section {
+        padding: 75px 18px;
+    }
+
+    .wish-card {
+        padding: 25px 18px;
+    }
+
+    .wish-buttons {
+        grid-template-columns: 1fr;
+    }
+
+    .wish-button {
+        padding: 20px;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr;
+        max-width: 450px;
+        margin: auto;
+    }
+
+    .gallery-image {
+        height: 100%;
+    }
+
+    .final-card {
+        padding: 30px 20px;
+    }
+
+    .final-subtitle {
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+    .background-diya {
+        transform: scale(0.7);
+        bottom: 10px;
+    }
+
+    .diya-left {
+        left: -15px;
+    }
+
+    .diya-right {
+        right: -15px;
+    }
+
+}
+
+@media (max-width: 400px) {
+
+    .nav-tag {
+        display: none;
+    }
+
+    .hero-title {
+        font-size: 65px;
+    }
+
+    .diyas {
+        gap: 15px;
+    }
+
+    .diya,
+    .diya-body {
+        width: 60px;
+    }
+
+    .wish-message h3 {
+        font-size: 35px;
+    }
+
+    .gallery-image {
+        height: 100%;
+    }
+
+    .curtain-center h1 {
+        font-size: 48px;
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+
+}

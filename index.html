@@ -1,0 +1,408 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>A Special Diwali Surprise 🪔</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ================= CURTAIN INTRO ================= -->
+
+    <div class="curtain-screen" id="curtainScreen">
+
+        <div class="curtain curtain-left"></div>
+        <div class="curtain curtain-right"></div>
+
+        <div class="curtain-center" id="curtainContent">
+            <div class="curtain-decor">✦ 🪔 ✦</div>
+
+            <p>A LITTLE FESTIVE SURPRISE</p>
+
+            <h1>Something Special</h1>
+
+            <span>Made with love, just for you</span>
+
+            <button id="openCurtain" class="curtain-button">
+                Open Your Surprise ✨
+            </button>
+        </div>
+
+    </div>
+
+
+    <!-- ================= BACKGROUND ================= -->
+
+    <canvas id="fireworks"></canvas>
+
+    <div class="light-string" id="lights"></div>
+
+    <div id="petals"></div>
+
+    <div class="gold-particles" id="particles"></div>
+
+
+    <!-- Background Diyas -->
+
+    <div class="background-diya diya-left">
+        <div class="diya-glow"></div>
+        <div class="bg-flame"></div>
+        <div class="bg-diya-body"></div>
+    </div>
+
+    <div class="background-diya diya-right">
+        <div class="diya-glow"></div>
+        <div class="bg-flame"></div>
+        <div class="bg-diya-body"></div>
+    </div>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="nav-logo">
+            🪔 Diwali Wishes
+        </div>
+
+        <div class="nav-tag">
+            A little surprise for you ✨
+        </div>
+
+    </nav>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-decor">
+                ✨ 🪔 ✨
+            </div>
+
+            <p class="eyebrow">
+                A FESTIVAL OF LIGHTS & HAPPINESS
+            </p>
+
+            <h1 class="hero-title">
+                Happy <span>Diwali</span>
+            </h1>
+
+            <h2 class="hero-subtitle">
+                To Someone Truly Special
+            </h2>
+
+            <p class="hero-description">
+                This Diwali, I wanted to create something a little different.
+                A little corner of the internet filled with lights, happiness,
+                beautiful memories and wishes just for you.
+            </p>
+
+            <button class="primary-button"
+                    onclick="scrollToSection('surprise')">
+
+                Open Your Surprise
+                <span>✦</span>
+
+            </button>
+
+
+            <!-- Decorative Diyas -->
+
+            <div class="diyas">
+
+                <div class="diya">
+                    <div class="flame"></div>
+                    <div class="diya-body"></div>
+                </div>
+
+                <div class="diya">
+                    <div class="flame"></div>
+                    <div class="diya-body"></div>
+                </div>
+
+                <div class="diya">
+                    <div class="flame"></div>
+                    <div class="diya-body"></div>
+                </div>
+
+            </div>
+
+            <div class="scroll-indicator">
+                ↓ Scroll to discover your wishes ↓
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= INTERACTIVE WISHES ================= -->
+
+    <section class="section" id="surprise">
+
+        <div class="section-heading">
+
+            <p class="eyebrow">
+                MADE WITH FESTIVE HAPPINESS
+            </p>
+
+            <h2 class="script-title">
+                A Surprise For You
+            </h2>
+
+            <p class="section-description">
+                Every little button holds a special wish.
+                Click them one by one and let the Diwali magic unfold.
+            </p>
+
+        </div>
+
+
+        <div class="wish-card">
+
+            <div class="gift-icon">🎁</div>
+
+            <div class="wish-buttons">
+
+                <button class="wish-button" onclick="showWish(1)">
+
+                    <span class="wish-icon">🌟</span>
+
+                    <span class="wish-button-title">
+                        A Wish For You
+                    </span>
+
+                    <span class="wish-button-subtitle">
+                        Click to reveal
+                    </span>
+
+                </button>
+
+
+                <button class="wish-button" onclick="showWish(2)">
+
+                    <span class="wish-icon">💖</span>
+
+                    <span class="wish-button-title">
+                        A Little Happiness
+                    </span>
+
+                    <span class="wish-button-subtitle">
+                        Click to reveal
+                    </span>
+
+                </button>
+
+
+                <button class="wish-button" onclick="showWish(3)">
+
+                    <span class="wish-icon">🪔</span>
+
+                    <span class="wish-button-title">
+                        A Special Message
+                    </span>
+
+                    <span class="wish-button-subtitle">
+                        Click to reveal
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- Wish 1 -->
+
+            <div class="wish-message" id="wish1">
+
+                <div class="message-icon">🌟</div>
+
+                <h3>May Your World Shine</h3>
+
+                <p>
+                    May this Diwali bring you endless opportunities,
+                    beautiful beginnings and the courage to make
+                    every dream of yours come true.
+                </p>
+
+            </div>
+
+
+            <!-- Wish 2 -->
+
+            <div class="wish-message" id="wish2">
+
+                <div class="message-icon">💖</div>
+
+                <h3>Stay Beautifully Happy</h3>
+
+                <p>
+                    May your days be filled with laughter,
+                    your heart with peace and your life with
+                    countless little moments worth smiling for.
+                </p>
+
+            </div>
+
+
+            <!-- Wish 3 -->
+
+            <div class="wish-message" id="wish3">
+
+                <div class="message-icon">🪔</div>
+
+                <h3>A Little Reminder</h3>
+
+                <p>
+                    Never forget how wonderful you are.
+                    Keep shining, keep smiling and keep being
+                    the amazing person you are.
+                    Happy Diwali! ✨
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PHOTO GALLERY ================= -->
+
+    <section class="section gallery-section">
+
+        <div class="section-heading">
+
+            <p class="eyebrow">
+                A LITTLE PHOTO CORNER
+            </p>
+
+            <h2 class="script-title">
+                Beautiful Memories
+            </h2>
+
+            <p class="section-description">
+                Some moments deserve to be remembered.
+                Here's a little gallery to make this surprise even more special.
+            </p>
+
+        </div>
+
+
+        <div class="gallery">
+
+            <div class="photo-card">
+
+                <img src="images/flower3.jpg"
+                     alt="A beautiful memory"
+                     class="gallery-image">
+
+                <div class="photo-caption">
+                    A Lovely Moment ✨
+                </div>
+
+            </div>
+
+
+            <div class="photo-card">
+
+                <img src="images/photo2.jpg"
+                     alt="A special memory"
+                     class="gallery-image">
+
+                <div class="photo-caption">
+                    Keep Shining 💖
+                </div>
+
+            </div>
+
+
+            <div class="photo-card">
+
+                <img src="images/flower3.jpg"
+                     alt="A happy memory"
+                     class="gallery-image">
+
+                <div class="photo-caption">
+                    Always Smile 🌸
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FINAL WISH ================= -->
+
+    <section class="final-section">
+
+        <div class="final-decor">
+            🎆 🪔 🎆
+        </div>
+
+        <h2 class="final-title">
+            Happy Diwali
+        </h2>
+
+        <p class="final-subtitle">
+            Wishing you a festival as beautiful as your smile.
+        </p>
+
+
+        <div class="final-card">
+
+            <p>
+                May the light of every diya bring positivity into your life.
+                May every flower bring a new reason to smile.
+                And may this festival fill your world with love,
+                peace, success and beautiful memories.
+            </p>
+
+            <h3>With Warm Wishes ✨</h3>
+
+            <p class="sender">
+                From your friend
+            </p>
+
+            <div class="sender-name">
+                — Vivek
+            </div>
+
+        </div>
+
+
+        <button class="primary-button celebrate-button"
+                onclick="celebrate()">
+
+            Celebrate Diwali 🎆
+
+        </button>
+
+
+        <footer>
+            Made with ✨ and lots of festive happiness
+        </footer>
+
+    </section>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
